@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include "fragments/breadcrumbs.html" with page="Blog" %}
+
+  <!-- *****Blog Area Start ***** -->
+  <section class="dento-blog-area mt-50">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-lg-8">
+
+      {% for x in blogs %}
+
+          {% with image_static='website/img/bg-img/'|add:x.image_url %}
+
+          <!-- Single Blog Item -->
+          <div class="single-blog-item style-2 d-flex flex-wrap align-items-center mb-50">
+            <!-- Blog Thumbnail -->
+            <div class="blog-thumbnail">
+              <a href="{% url 'blog_details' id=x.id %}">
+                <img src="{% static image_static %}" alt="">
+              </a>
+            </div>
+            <!-- Blog Content -->
+            <div class="blog-content">
+              <a href="{% url 'blog_details' id=x.id %}" class="post-title">{{ x.title }}</a>
+              <p>{{ x.content }}</p>
+              <div class="post-meta">
+                <a href="#"><i class="icon_clock_alt px-2"></i>{{ x.date_posted | date:"d M Y"}}</a>
+                <a href="#"><i class="icon_chat_alt px-2"></i>{{ x.number_of_comments }} Comments</a>
+              </div>
+            </div>
+          </div>
+
+          {% endwith %}
+      {% endfor %}
+
+          <!-- Pagination -->
+          <nav class="dento-pagination mb-100">
+            <ul class="pagination">
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
+            </ul>
+          </nav>
+        </div>
+
+        {% include "fragments/blog_sidebar.html" %}
+
+      </div>
+    </div>
+  </section>
+  <!-- *****Blog Area End ***** -->
+
+{% endblock %}

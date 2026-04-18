@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include "fragments/breadcrumbs.html" with page="Our Pricing" %}
+
+<!-- ***** Dento Pricing Table Area Start ***** -->
+<section class="dento-pricing-table-area mt-50 section-padding-0-100">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="dento-price-table table-responsive">
+          <table class="table table-borderless mb-0">
+            <thead>
+            <tr>
+              <th scope="col">Service Names</th>
+              <th scope="col">Stage</th>
+              <th scope="col">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for x in services %}
+            <tr>
+              <th scope="row">{{ x.name }}</th>
+              <td>{{ x.stage }}</td>
+              <td>${{ x.price }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="more-btn text-center mt-50">
+          <a href="#" class="btn dento-btn">Read More <i class="fa fa-angle-double-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ***** Dento Pricing Table Area End ***** -->
+
+{% endblock %}

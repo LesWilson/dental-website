@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% include "fragments/breadcrumbs.html" with page="About Us" %}
+
+{% include "fragments/about.html" with padding="mt-70" %}
+
+  <div class="container">
+    <div class="dento-border clearfix"></div>
+  </div>
+
+{% include "fragments/cool_facts.html" %}
+
+{% include "fragments/testimonials.html" %}
+
+{% include "fragments/dentist_area.html" %}
+
+{% endblock %}
