@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.template import loader
 from django.core.mail import send_mail
 from .models import ServiceDetail, BlogPost
+from django.conf import settings
 
 # Create your views here.
 
@@ -18,21 +19,23 @@ def contact(request) :
 		name = request.POST['message-name']
 		content = request.POST['message']
 
+        # format contents of message - 
 		message = f"Sent By: {name} \n email: {email} \n content:{content}"
 	
-		# send email
-		'''
+		# get default email address from settings
+		default_email = settings.EMAIL_HOST_USER
+		
+		# send email - for contact us, recipient and sender are always the default email address
 		send_mail(subject=name,
 			message=message,
-			from_email='lesjameswilson@gmail.com',
-			recipient_list=[email],
+			from_email=default_email,
+			recipient_list=[default_email],
 			fail_silently=False)
-		'''
+		
 		return render(request, 'contact.html', {'message_name' : name})
 		
 	else:
 		#
-		# 	
 		return render(request, 'contact.html', {})
 
 def pricing(request) :
